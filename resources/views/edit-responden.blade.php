@@ -14,29 +14,14 @@
             <h1>Asesmen</h1>
         </div>
         <ul>
-            <li><a href="homepage.html">Homepage</a></li>
-            <li class="dropdown">
-                <a href="#" class="dropbtn">Asesmen </span><span class="arrow">▼</span></a>
-                <ul class="dropdown-content">
-                    <li><a href="identitas-responden.html" class="active">Identitas Responden</a></li>
-                    <li><a href="sistem-elektronik.html">Sistem Elektronik</a></li>
-                    <li><a href="tata-kelola.html">Tata Kelola</a></li>
-                    <li><a href="risiko.html" >Pengelolaan Risiko</a></li>
-                    <li><a href="kerangka-kerja.html">Kerangka Kerja</a></li>
-                    <li><a href="pengelolaan-aset.html">Pengelolaan Aset</a></li>
-                    <li><a href="teknologi.html">Teknologi</a></li>
-                    <li><a href="pdp.html">Perlindungan Data Pribadi</a></li>
-                    <li><a href="suplemen.html">Suplemen</a></li>
-                </ul>
-            </li>
-
+            <li><a href="{{ url('/') }}"class="active">Homepage</a></li>
+            <li><a href="{{ url('/asesmen') }}">Asesmen</a></li>
         </ul>
     </nav>
     <!-- Main Content -->
     <main class="content">
         <header class="header">
             <h2>Identitas Responden</h2>
-            <button class="logout">keluar</button>
         </header>
 
         <form class="respondent-form" action="{{ route('store-identitas') }}" method="POST">

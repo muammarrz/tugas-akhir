@@ -4,32 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - Indeks KAMI</title>
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="{{ asset('assets/styles/style.css') }}">
 </head>
 <body>
     <div class="container">
+        <div class="logo">
+            <img src="{{ asset('assets/images/logo.png') }}" alt="Logo" style="width: 150px; height: auto;">
+        </div>   
         <h2>Indeks KAMI</h2>
-        <form id="registerForm" onsubmit="register(event)">
+        {{-- Menampilkan pesan sukses atau error --}}
+        @if(session('success'))
+            <div class="alert success">{{ session('success') }}</div>
+        @endif
+
+        {{-- Menampilkan error jika ada --}}
+        @if($errors->any())
+            <div class="alert error">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        {{-- Form Registrasi --}}
+        <form method="POST" action="{{ url('/register') }}">
+            @csrf  {{-- Token untuk proteksi CSRF --}}
+            
             <div class="form-group">
-                <label for="email">email</label>
-                <input type="email" id="email" required>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" value="{{ old('email') }}" required>
             </div>
             <div class="form-group">
-                <label for="username">username</label>
-                <input type="text" id="username" required>
+                <label for="name">Username</label>
+                <input type="text" id="name" name="name" value="{{ old('name') }}" required>
             </div>
             <div class="form-group">
-                <label for="password">password</label>
-                <input type="password" id="password" required>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
             </div>
             <div class="form-group">
-                <label for="confirmPassword">konfirmasi password</label>
-                <input type="password" id="confirmPassword" required>
+                <label for="password_confirmation">Konfirmasi Password</label>
+                <input type="password" id="password_confirmation" name="password_confirmation" required>
             </div>
-            <button type="submit">daftar</button>
+            <button type="submit">Daftar</button>
         </form>
-        <p>sudah punya akun? <a href="login.html">masuk</a></p>
+        <p>Sudah punya akun? <a href="{{ url('/login') }}">Masuk</a></p>
     </div>
-    <script src="script.js"></script>
 </body>
 </html>
